@@ -1,6 +1,6 @@
 from flask import Blueprint
 
-auth = Blueprint("auth", __main__)
+auth = Blueprint("auth", __name__)
 
 
 @auth.route("/")
