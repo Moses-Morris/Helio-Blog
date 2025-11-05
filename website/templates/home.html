@@ -1,0 +1,22 @@
+{% extends "base.html" }
+<!--Inherit variables from other templates-->
+{% block title %} {% endblock %}
+{% block content %} {% endblock %}
+
+
+
+{{ name }}
+
+{% if name == "Tim" %}
+    Hi Tim
+{% else %}
+    Hi Guest User
+{% endif %}
+
+
+{% for x in [1, 2, 3, 4] %}
+    {{ x }}
+{% endfor %}
+
+
+{% endblock %}
