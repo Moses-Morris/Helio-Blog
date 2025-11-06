@@ -12,7 +12,8 @@ DB_NAME = "database.db"
 
 def create_app():
     app = Flask(__name__)
-    app.config['secret_key'] = "30876adf7888fd2e3c50d787fa26d32b8cf488087502f85588f1ab84063cdc9a"
+    #app.config['secret_key'] = "30876adf7888fd2e3c50d787fa26d32b8cf488087502f85588f1ab84063cdc9a"   # This wont work since it is CASE SENSITIVE
+    app.config['SECRET_KEY'] = "30876adf7888fd2e3c50d787fa26d32b8cf488087502f85588f1ab84063cdc9a"
     app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}' #configure our database
     db.init_app(app) #initialize our db with our flask app
     #Get rid of this since you are going to use a blueprint for this
