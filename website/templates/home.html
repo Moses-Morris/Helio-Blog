@@ -1,21 +1,25 @@
 {% extends "base.html" %}
 <!--Inherit variables from other templates-->
-{% block title %} {% endblock %}
-{% block content %} {% endblock %}
+{% block title %} Home - Helio{% endblock %}
+{% block content %}  
 
 
 
-{{ name }}
+<p>{{ name }}</p>
 
 {% if name == "Tim" %}
-    Hi Tim
+    <p>Hi Tim</p>
 {% else %}
-    Hi Guest User
+    <p>Hi {{ name }}</p>
 {% endif %}
 
-
+<div>
 {% for x in [1, 2, 3, 4] %}
-    {{ x }}
+    <p>{{ x }}</p>
 {% endfor %}
+</div>
+
+{% endblock %}
+
 
 

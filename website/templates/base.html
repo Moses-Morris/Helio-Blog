@@ -3,11 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %} {% endblock %}</title>
+    <!-- ✅ Local Bootstrap CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" aria-label="Ninth navbar example">
+        <div class="container-xl">
+        <a class="navbar-brand" href="/" style="font-weight: 800;">HELIO BLOGS</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample07XL" aria-controls="navbarsExample07XL" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarsExample07XL">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <form>
+                    <input class="form-control" type="text" placeholder="Search" aria-label="Search">
+                </form>  
+            </ul>
+            
+            <ul  class="navbar-nav">
+                {%   if user.is_authenticated   %}
+                    <li>
+                        <a class="btn-lg btn-primary  my-2" href="/logout" type="btn">Logout</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active " href="/logout" style="color: rgb(238, 255, 0) !important;">Logout</a>
+                    </li>
+                {%   else   %}
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/login" style="color: rgb(245, 205, 4) !important;">Login</a>
+                    </li>
+                {%  endif   %}
+                
+            </ul>
+        </div>
+        </div>
+    </nav>
     <div>
-        {% block content %} {% endblock %}
+        {% with messages = get_flashed_messages(with_categories=True) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    {% if category == 'error' %}
+                        <div class="alert alert-danger alert-dismissible fade show " role="alert">
+                            {{ message }}
+                            <button class="btn-close align-right" type="button" data-bs-dismiss="alert"></button>
+                        </div>
+                    {% endif %}
+                    {% if category == 'success' %}
+                        <div class="alert alert-success alert-dismissible fade show " role="alert">
+                            {{ message }}
+                            <button class="btn-close align-right" type="button" data-bs-dismiss="alert"></button>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
     </div>
+    <div class="container">
+        <!-- Content here -->
+        {% block content %}{% endblock %}
+    </div>
+        
+    
+
+    <!-- ✅ Local Bootstrap JS -->
+  <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
 </body>
 </html>
