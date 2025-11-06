@@ -41,7 +41,7 @@ def create_app():
 
     @login_manager.user_loader   #This is a decorator to get the logged in user information #store the id in session
     def  load_user(id):
-        return User.query.get(int(id=id))
+        return User.query.get(int(id))
 
 
 

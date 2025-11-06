@@ -8,27 +8,26 @@ from werkzeug.security import check_password_hash, generate_password_hash
 
 auth = Blueprint("auth", __name__)
 
-
-@auth.route("/login" , methods=['GET', 'POST'])
+@auth.route("/login", methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
-        username = request.form.get(email)
-        password = request.form.get(password)
+        email = request.form.get("email")
+        password = request.form.get("password")
 
-        #validate login process and details
-        check_user_email = User.query.filter_by(email=email).first()
-        if check_user_email:
-            #validate the password
-            if check_password_hash(check_user_email.password, password):
-                flash(f"Login Successful. \n Welcome {check_user_email.username}", category=success)
-                login_user(check_user_email, remember=True)
+        user = User.query.filter_by(email=email).first()
+
+        if user:
+            if check_password_hash(user.password, password):
+                login_user(user, remember=True)
+                flash(f"Welcome back, {user.username}!", category='success')
                 return redirect(url_for('views.home'))
             else:
-                flash(f"Password is incorrect", category=error)
+                flash("Incorrect password.", category='error')
         else:
-            flash(f"Email Does not Exist. \n Signup if you are not a member of Helio", category=error)
+            flash("Email not found. Please sign up.", category='error')
 
     return render_template("login.html", user=current_user)
+
 
 
 #Registerr
@@ -69,7 +68,7 @@ def signup():
             return  redirect(url_for('auth.signup'))
 
         #Create User
-        new_user = User(username=username, email=email, password=password)
+        new_user = User(username=username, email=email, password=generate_password_hash(password))
         db.session.add(new_user)
         db.session.commit()
         #OR you can login the user as you wish to handle the request

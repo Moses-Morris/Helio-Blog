@@ -1,0 +1,35 @@
+@auth.route("/login" , methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        email = request.form.get(email)
+        password = request.form.get(password)
+
+        #validate login process and details
+        check_user_email = User.query.filter_by(email=email).first()
+        if check_user_email:
+            #validate the password
+            if check_password_hash(check_user_email.password, password):
+                flash(f"Login Successful. \n Welcome {check_user_email.username}", category=success)
+                login_user(check_user_email, remember=True)
+                return redirect(url_for('views.home'))
+            else:
+                flash(f"Password is incorrect", category=error)
+        else:
+            flash(f"Email Does not Exist. \n Signup if you are not a member of Helio", category=error)
+
+    return render_template("login.html", user=current_user)
+
+<ul  class="navbar-nav">
+                {%   if user.is_authenticated   %}
+                    <li>
+                        <a class="btn-lg btn-primary  my-2" href="/logout" type="btn">Logout</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active " href="/logout" style="color: rgb(238, 255, 0) !important;">Logout</a>
+                    </li>
+                {%   else   %}
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/login" style="color: rgb(245, 205, 4) !important;">Login</a>
+                    </li>
+                {%  endif   %}
+                
