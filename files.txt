@@ -33,3 +33,31 @@ def login():
                     </li>
                 {%  endif   %}
                 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p>{{ name }}</p>
+
+{% if name == "Tim" %}
+    <p>Hi Tim</p>
+{% else %}
+    <p>Hi {{ name }}</p>
+{% endif %}
+
+<div>
+{% for x in [1, 2, 3, 4] %}
+    <p>{{ x }}</p>
+{% endfor %}
+</div>
