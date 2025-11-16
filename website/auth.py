@@ -83,5 +83,7 @@ def signup():
 @login_required
 @auth.route("/logout")
 def logout():
-    logout_user(current_user)
+    logout_user()
+    print(f"Logged Out {current_user} successfuly")
+    flash(f"Logout Successful \n ")
     return redirect(url_for("views.home"))

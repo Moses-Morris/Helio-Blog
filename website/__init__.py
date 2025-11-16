@@ -27,7 +27,7 @@ def create_app():
     app.register_blueprint(auth, url_prefix="/")
 
     #import database models
-    from .models import User
+    from .models import User, Post, Comment, Like
     #call our database
     create_database(app)
     
@@ -58,3 +58,8 @@ def create_database(app):
         with app.app_context():
             db.create_all()
             print("Database created !!")
+            print("Tables Created : ")
+            print("1. User  !!")
+            print("2. Post  !!")
+            print("3. Comment  !!")
+            print("4. Likes  !!")

@@ -1,2 +1,46 @@
 {% extends "base.html" %}
-{}
+<!--Inherit variables from other templates-->
+{% block title %} {{ username }} - Helio{% endblock %}
+{% block content %}  
+
+ <div class="col-12 grid-margin stretch-card column">
+        <div class="col-md-12 grid-margin stretch-card center">
+            <img style="width: 20vh; height: 20vh; object-fit: cover; border-radius: 50%;" src="{{ url_for('static', filename='images/mohammad-rahmani-d3Ysz1ziusM-unsplash.jpg') }}" alt="{{ url_for('static', filename='images/helio image.png') }}">
+            
+        </div>
+        <br>
+        <div class="col-md-12 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title"><bold>{{ username }} Blogs </bold></h4>
+                   
+                 
+                  
+                    {%  for post in posts  %}
+                    <div class="card">
+                        <div class="card-body">
+                            <p>{{ post.text}}</p>
+                            <p>{{ post.user.username}}</p>
+                            <em class="card-footer">{{ post.date }}</em>
+                        </div>
+                        {% if user.id == post.author %}
+                            <div class="buttons card-body">
+                                <a type="submit" class="btn btn-primary mr-2" href="/edit/{{post.id}}">Edit Post</a>
+                                <a class="btn btn-danger" href="/delete/{{post.id}}">Delete Post</a>
+                            </div>
+                        {% endif %}
+                    </div> 
+                    <br>
+                    {% endfor %}
+                    
+                </div>
+            </div>
+        </div>   
+
+       
+    
+</div>
+{% endblock %}
+
+
+

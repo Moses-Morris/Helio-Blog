@@ -2,34 +2,57 @@
 <!--Inherit variables from other templates-->
 {% block title %} Login - Helio {% endblock %}
 {% block content %}  
-    
-<div class="form ">
-    <form action="forms/contact.php " method="post " role="form " class="php-email-form ">
-    <div class="row ">
-        <div class="form-group col-md-6 ">
-        <input type="text " name="name " class="form-control " id="name " placeholder="Your Name " data-rule="minlen:4 " data-msg="Please enter at least 4 chars ">
-        <div class="validate "></div>
+ <div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+        <h4 class="card-title">Create Post</h4>
+        <p class="card-description"> Create and Publish Post </p>
+        <form class="forms-sample" method="POST">
+            <div class="form-group">
+            <!--label for="exampleInputName1">Name</label>
+            <input type="text" class="form-control" id="exampleInputName1" placeholder="Name">
+            </div>
+            <div class="form-group">
+            <label for="exampleInputEmail3">Email address</label>
+            <input type="email" class="form-control" id="exampleInputEmail3" placeholder="Email">
+            </div>
+            <div class="form-group">
+            <label for="exampleInputPassword4">Password</label>
+            <input type="password" class="form-control" id="exampleInputPassword4" placeholder="Password">
+            </div>
+            <div class="form-group">
+            <label for="exampleSelectGender">Gender</label>
+            <select class="form-control" id="exampleSelectGender">
+                <option>Male</option>
+                <option>Female</option>
+            </select>
+            </div>
+            <div class="form-group">
+            <label>File upload</label>
+            <input type="file" name="img[]" class="file-upload-default">
+            <div class="input-group col-xs-12">
+                <input type="text" class="form-control file-upload-info" disabled="" placeholder="Upload Image">
+                <span class="input-group-append">
+                <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
+                </span>
+            </div>
+            </div>
+            <div class="form-group">
+            <label for="exampleInputCity1">City</label>
+            <input type="text" class="form-control" id="exampleInputCity1" placeholder="Location">
+            </diV-->
+            <div class="form-group">
+                <label for="exampleTextarea1">Textarea</label>
+                <textarea name="text" class="form-control" id="exampleTextarea1" rows="4" ></textarea>
+            </div>
+            <br>
+            <button type="submit" class="btn btn-primary mr-2">Submit</button>
+            <a class="btn btn-dark" href="/">Cancel</a>
+        </form>
         </div>
-        <div class="form-group col-md-6 ">
-        <input type="email " class="form-control " name="email " id="email " placeholder="Your Email " data-rule="email " data-msg="Please enter a valid email ">
-        <div class="validate "></div>
-        </div>
     </div>
-    <div class="form-group ">
-        <input type="text " class="form-control " name="subject " id="subject " placeholder="Subject " data-rule="minlen:4 " data-msg="Please enter at least 8 chars of subject ">
-        <div class="validate "></div>
-    </div>
-    <div class="form-group ">
-        <textarea class="form-control " name="message " rows="5 " data-rule="required " data-msg="Please write something for us " placeholder="Message "></textarea>
-        <div class="validate "></div>
-    </div>
-    <div class="mb-3 ">
-        <div class="loading ">Loading</div>
-        <div class="error-message "></div>
-        <div class="sent-message ">Your message has been sent. Thank you!</div>
-    </div>
-    <div class="text-center "><button type="submit ">Send Message</button></div>
-    </form>
-</div>
+</div>   
+
+
 
 {% endblock %}

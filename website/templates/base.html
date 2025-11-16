@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- ✅ Local Bootstrap CSS -->
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
     <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
@@ -25,10 +25,17 @@
                 <ul class="navbar-nav">
                     {% if current_user.is_authenticated %}
                         <!-- Show username -->
+
                         <li class="nav-item">
                             <span class="nav-link text-warning">
                                 {{ current_user.username }}
                             </span>
+                        </li>
+                        <!--Create Post-->
+                        <li class="nav-item">
+                            <a class="btn btn-success ms-2" href="{{ url_for('views.create') }}">
+                                Create Post
+                            </a>
                         </li>
 
                         <!-- Logout button -->
@@ -80,6 +87,8 @@
     </div>
     <div class="container">
         <!-- Content here -->
+         <br>
+         <br>
         {% block content %}{% endblock %}
     </div>
         
